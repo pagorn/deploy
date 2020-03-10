@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/report', 'admin\\reportController1@index')->name('report');
-Route::get('/reportapprove', 'admin\\reportController1@reportapprove')->name('reportapprove');
+Route::get('/report', 'Admin\\reportController1@index')->name('report');
+Route::get('/reportapprove', 'Admin\\reportController1@reportapprove')->name('reportapprove');
 
 //Route::get('/createWord', ['as'=>'createWord','uses'=>'Admin\\gradeController@createWordDocx']);
 
@@ -47,7 +47,7 @@ Route::resource('admin/report', 'Admin\\reportController');
 Route::middleware(['auth','verifyIsAdmin'])->group(function(){
 
     Route::resource('admin/course_detail', 'Admin\\course_detailController');
-  
+
     Route::resource('admin/department', 'Admin\\departmentController');
     Route::resource('admin/courses', 'Admin\\coursesController');
     Route::resource('admin/subcategory', 'Admin\\subcategoryController');
