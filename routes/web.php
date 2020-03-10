@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/report', 'admin\\ReportController1@index')->name('report');
-Route::get('/reportapprove', 'admin\\ReportController1@reportapprove')->name('reportapprove');
+Route::get('/report', 'Admin\\ReportController1@index')->name('report');
+Route::get('/reportapprove', 'Admin\\ReportController1@reportapprove')->name('reportapprove');
 
 //Route::get('/createWord', ['as'=>'createWord','uses'=>'Admin\\gradeController@createWordDocx']);
 
