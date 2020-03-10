@@ -18,8 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/report', 'admin\\reportController1@index')->name('report');
-Route::get('/reportapprove', 'admin\\reportController1@reportapprove')->name('reportapprove');
+Route::get('/report', 'Admin\\reportController1@index')->name('report');
+Route::get('/reportapprove', 'Admin\\reportController1@reportapprove')->name('reportapprove');
 
 //Route::get('/createWord', ['as'=>'createWord','uses'=>'Admin\\gradeController@createWordDocx']);
 
@@ -29,7 +29,7 @@ Route::resource('admin/grade', 'Admin\\gradeController');
 Route::resource('admin/grade1', 'Admin\\gradeController1');
 
 Route::get('/admin/create1', 'Admin\\gradeController1@create')->name('create1');
-Route::get('/admin/{id}/edit1', 'admin\\reportController1@edit')->name('edit1');
+Route::get('/admin/{id}/edit1', 'Admin\\reportController1@edit')->name('edit1');
 
 Route::post('/admin/report/{id}', 'Admin\reportController@completedUpdate')->name('completedUpdate');
 
@@ -40,7 +40,7 @@ Route::post('/admin/grade2/{id}', 'Admin\reportController@completedUpdate3')->na
 
 Route::get('admin/grade/{id}','Admin\\gradeController@getStates');
 
-Route::resource('admin/report1', 'admin\\reportController1');
+Route::resource('admin/report1', 'Admin\\reportController1');
 
 Route::resource('admin/report', 'Admin\\reportController');
 
