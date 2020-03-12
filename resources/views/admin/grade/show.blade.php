@@ -55,7 +55,7 @@
 
 
         <center>
-            <h3>แบบฟอร์มตรวจสอบการสำเร็จการศึกษาาาาาาาา<br>
+            <h3>แบบฟอร์มตรวจสอบการสำเร็จการศึกษา<br>
                 วิทยาศาสตรบัณฑิต สาขาวิชา {!! Auth::user()->course_name !!} (ตั้งแต่รหัสขึ้นต้นด้วย 60 เป็นต้นไป)</h3>
         </center>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspข้าพเจ้า นาย/นาง/นางสาว……{{$name}}………รหัสประจำตัว………{{$student_id }}……<br>
@@ -93,21 +93,21 @@
                         @if($item->status1 == 1)
                          <b>ผ่าน</b>
                             @else
-                            <b>ไม่ผ่าน</b> 
+                            <b>ไม่ผ่าน</b>
                         @endif
                         @endforeach</td>
                     <td align="center" style="width: 33%;">@foreach($user as $item)
                         @if($item->status2 == 1)
                          <b>ผ่าน</b>
                             @else
-                            <b>ไม่ผ่าน</b> 
+                            <b>ไม่ผ่าน</b>
                         @endif
                         @endforeach</td>
                     <td align="center" style="width: 33%;">@foreach($user as $item)
                         @if($item->status3 == 1)
-                         <b>ผ่าน</b> 
+                         <b>ผ่าน</b>
                         @else
-                         <b>ไม่ผ่าน</b> 
+                         <b>ไม่ผ่าน</b>
                         @endif
                         @endforeach</td>
                 </tr>
