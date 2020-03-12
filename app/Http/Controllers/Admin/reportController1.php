@@ -14,7 +14,7 @@ use App\manage_course;
 use Illuminate\support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class reportController1 extends Controller
+class ReportController1 extends Controller
 {
     /**
      * Display a listing of the resource.
