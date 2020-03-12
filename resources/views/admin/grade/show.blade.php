@@ -1,3 +1,4 @@
+
 @php($sum_all=0)
 @foreach($std as $rw)
 @php($sum_all+= (float)$rw->grade1 * $rw->subject_credit)
@@ -54,7 +55,7 @@
 
 
         <center>
-            <h3>แบบฟอร์มตรวจสอบการสำเร็จการศึกษา<br>
+            <h3>แบบฟอร์มตรวจสอบการสำเร็จการศึกษาาาาาาาา<br>
                 วิทยาศาสตรบัณฑิต สาขาวิชา {!! Auth::user()->course_name !!} (ตั้งแต่รหัสขึ้นต้นด้วย 60 เป็นต้นไป)</h3>
         </center>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspข้าพเจ้า นาย/นาง/นางสาว……{{$name}}………รหัสประจำตัว………{{$student_id }}……<br>
