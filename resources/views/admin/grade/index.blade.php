@@ -475,7 +475,7 @@
                                         <td>-</td>
 
 
-                                        <td>{{ number_format($gpa_2, 2)}}</td>
+                                        <td>{{number_format($gpa_cat_2/$count_2, 2)}}</td>
 
 
                                         <td>
@@ -607,7 +607,7 @@
                                         </td>
 
 
-                                        <td>{{ number_format($gpa_credit_8, 2)}}</td>
+                                        <td>{{ number_format($gpa_cat_3, 2)}}</td>
 
 
                                         <td>

@@ -36,9 +36,8 @@ class gradeController extends Controller
        $course_detail = course_detail::latest()->paginate(1);
 
        $report = report::latest()->paginate(1);
-        $test = grade::where('student_id', '=', $student_id)->count('id');
-        $std = grade::where('student_id', '=', $student_id)->paginate($test);
-        $sum_cat_2 = grade::where('student_id', '=', $student_id)->Where('category_id', '2')->paginate($test);
+        
+
 
         $sum_group = grade::where('student_id', '=', $student_id)->Where('group_id', '101')->sum('subject_credit');
 
@@ -128,10 +127,36 @@ class gradeController extends Controller
         $credit7 = course_detail::where('course_id','=', $course_id)->where('category_id','=', '2')->where('group_id','=', '201')->pluck('sum_credit_category')->first();
         $credit8 = course_detail::where('course_id','=', $course_id)->where('category_id','=', '2')->where('group_id','=', '202')->pluck('sum_credit_category')->first();
         $credit9 = course_detail::where('course_id','=', $course_id)->where('category_id','=', '2')->where('group_id','=', '203')->pluck('sum_credit_category')->first();
-        
+        $test = grade::where('student_id', '=', $student_id)->count('id');
+        $std = grade::where('student_id', '=', $student_id)->paginate($test);
+        $sum_cat_2 = grade::where('student_id', '=', $student_id)->Where('category_id', '2')->paginate($test);
+        $sum_cat_1 = grade::where('student_id', '=', $student_id)->Where('category_id', '1')->paginate($test);
+        $sum_cat_3 = grade::where('student_id', '=', $student_id)->Where('category_id', '3')->paginate($test);
+        $gpa_cat_1 = 0;
+        foreach($sum_cat_1 as $rw){
+            $gpa_cat_1+= (float)$rw->grade1 * $rw->subject_credit;
+        }
+        if ($count_1 == 0) {
+            $gpa_cat_1 = 0;
+        }
+        else{
+            $gpa_cat_1 = $gpa_cat_1/$count_1;
+        }
+        $gpa_cat_3 = 0;
+        foreach($sum_cat_3 as $rw){
+            $gpa_cat_3+= (float)$rw->grade1 * $rw->subject_credit;
+        }
+        if ($count_3 == 0) {
+            $gpa_cat_3 = 0;
+        }
+        else{
+            $gpa_cat_3 = $gpa_cat_3/$count_3;
+        }
+
+
         $edit_id = report::where('student_id',  $student_id)->value('id');
         
-        return view('admin.grade.index', compact('sum_cat_2','std','user','count_credit_sum8','count_credit_sum7','count_credit_sum6','count_credit_sum4','count_credit_sum3','count_credit_sum2','count_credit_sum1','edit_id','student_id','report','credit_sum','credit9','credit8','credit7','credit6','credit5','credit4','credit3','credit2','credit1','count_credit_8','gpa_credit_8','grade_7','grade_4','grade_5','grade_6','gpa_credit_1','gpa_credit_2','gpa_credit_3','gpa_credit_4','gpa_credit_6','gpa_credit_7','count_credit_7','count_credit_6','count_credit_4','count_credit_3','count_credit_2','count_credit_1','sum_gpa_1','sum_category','sum_group','course_detail','sum_credit','manage_course','sum_gpa','gpa_2','gpa_3','gpa_1','grade','grade_2','grade_3','count_1','count_2','count_3'));
+        return view('admin.grade.index', compact('gpa_cat_3','gpa_cat_1','sum_cat_2','std','user','count_credit_sum8','count_credit_sum7','count_credit_sum6','count_credit_sum4','count_credit_sum3','count_credit_sum2','count_credit_sum1','edit_id','student_id','report','credit_sum','credit9','credit8','credit7','credit6','credit5','credit4','credit3','credit2','credit1','count_credit_8','gpa_credit_8','grade_7','grade_4','grade_5','grade_6','gpa_credit_1','gpa_credit_2','gpa_credit_3','gpa_credit_4','gpa_credit_6','gpa_credit_7','count_credit_7','count_credit_6','count_credit_4','count_credit_3','count_credit_2','count_credit_1','sum_gpa_1','sum_category','sum_group','course_detail','sum_credit','manage_course','sum_gpa','gpa_2','gpa_3','gpa_1','grade','grade_2','grade_3','count_1','count_2','count_3'));
     }
 
     /**
@@ -313,8 +338,20 @@ class gradeController extends Controller
         $count_credit_sum6 = grade::where('student_id', '=', $student_id)->Where('group_id', '202')->sum('subject_credit');
         $count_credit_sum7 = grade::where('student_id', '=', $student_id)->Where('group_id', '203')->sum('subject_credit');
         $count_credit_sum8 = grade::where('student_id', '=', $student_id)->Where('group_id', '204')->sum('subject_credit');
+        $sum_cat_3 = grade::where('student_id', '=', $student_id)->Where('category_id', '3')->paginate($test);
+        
+        $gpa_cat_3 = 0;
+        foreach($sum_cat_3 as $rw){
+            $gpa_cat_3+= (float)$rw->grade1 * $rw->subject_credit;
+        }
+        if ($count_3 == 0) {
+            $gpa_cat_3 = 0;
+        }
+        else{
+            $gpa_cat_3 = $gpa_cat_3/$count_3;
+        }
 
-        return view('admin.grade.show', compact('sum_cat_2','std','count_credit_sum8','count_credit_sum7','count_credit_sum6','count_credit_sum4','count_credit_sum3','count_credit_sum2','count_credit_sum1','user','count_credit_p1','count_credit_p2','count_credit_p3','count_credit_p4','count_credit_p6','count_credit_p7','count_credit_p8','name','student_id','credit_sum','credit9','credit8','credit7','credit6','credit5','credit4','credit3','credit2','credit1','count_credit_8','gpa_credit_8','grade_7','grade_4','grade_5','grade_6','gpa_credit_1','gpa_credit_2','gpa_credit_3','gpa_credit_4','gpa_credit_6','gpa_credit_7','count_credit_7','count_credit_6','count_credit_4','count_credit_3','count_credit_2','count_credit_1','sum_gpa_1','sum_category','sum_group','course_detail','sum_credit','manage_course','sum_gpa','gpa_2','gpa_3','gpa_1','grade','grade_2','grade_3','count_1','count_2','count_3'));
+        return view('admin.grade.show', compact('gpa_cat_3','sum_cat_2','std','count_credit_sum8','count_credit_sum7','count_credit_sum6','count_credit_sum4','count_credit_sum3','count_credit_sum2','count_credit_sum1','user','count_credit_p1','count_credit_p2','count_credit_p3','count_credit_p4','count_credit_p6','count_credit_p7','count_credit_p8','name','student_id','credit_sum','credit9','credit8','credit7','credit6','credit5','credit4','credit3','credit2','credit1','count_credit_8','gpa_credit_8','grade_7','grade_4','grade_5','grade_6','gpa_credit_1','gpa_credit_2','gpa_credit_3','gpa_credit_4','gpa_credit_6','gpa_credit_7','count_credit_7','count_credit_6','count_credit_4','count_credit_3','count_credit_2','count_credit_1','sum_gpa_1','sum_category','sum_group','course_detail','sum_credit','manage_course','sum_gpa','gpa_2','gpa_3','gpa_1','grade','grade_2','grade_3','count_1','count_2','count_3'));
     }
 
     /**
