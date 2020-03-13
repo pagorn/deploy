@@ -103,7 +103,7 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/grade') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/admin/grade1') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                        
                             {{ csrf_field() }}
                             <div class="d-md-flex"> 
