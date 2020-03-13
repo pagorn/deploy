@@ -1,25 +1,75 @@
 
 
-<div class="form-group">
-           
-            <select class="form-control" id="department_id" name="department_id" required>
-            <option value="" selected disabled hidden>รหัสสาขาวิชา</option>
-            @foreach($department as $item)
-                        <option value="{{$item->department_id}}">{{$item->department_name}}</option>
-                    @endforeach
-            </select>
-        </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+
+  <select class="form-control" id="prod_cat_id" name="department_id">
+  	
+  	<option value="0" disabled="true" selected="true">รหัสสาขาวิชา</option>
+  	@foreach($prod as $cat)
+  		<option value="{{$cat->department_id}}">{{$cat->department_name}}</option>
+  	@endforeach
+
+  </select>
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$(document).on('change','.form-control',function(){
+			// console.log("hmm its change");
+
+			var cat_id=$(this).val();
+			// console.log(cat_id);
+			var div=$(this).parent();
+
+			var op=" ";
+
+			$.ajax({
+				type:'get',
+				url:'{!!URL::to('findProductName')!!}',
+				data:{'id':cat_id},
+				success:function(data){
+					//console.log('success');
+
+					//console.log(data);
+
+					//console.log(data.length);
+					op+='<option value="0" selected disabled>รหัสหลักสูตร</option>';
+					for(var i=0;i<data.length;i++){
+					op+='<option value="'+data[i].course_id+'">'+data[i].course_name+'</option>';
+
+
+             
+				   }
+
+				   div.find('.form-control-sm').html(" ");
+				   div.find('.form-control-sm').append(op);
+				},
+				error:function(){
+
+				}
+			});
+		});
+
+		
+
+	});
+</script>
+
+
 
 
         <div class="d-md-flex"> 
 <div class="form-group">
            
-            <select class="form-control" id="course_id" name="course_id" required>
-            <option value="" selected disabled hidden>รหัสหลักสูตร</option>
-            @foreach($courses as $item)
-                        <option value="{{$item->course_id}}">{{$item->course_name}}</option>
-                    @endforeach
-            </select>
+<select name="course_id" id="course_id" class="form-control-sm">
+
+<option value="0" disabled="true" selected="true">รหัสหลักสูตร</option>
+</select>
         </div>
 
 
