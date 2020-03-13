@@ -20,6 +20,25 @@ class course_detailController extends Controller
      *
      * @return \Illuminate\View\View
      */
+    
+    
+     public function prodfunct(){
+
+		$prod=department::all();//get data from table
+		return view('productlist',compact('prod'));//sent data to view
+
+	}
+
+	public function findProductName(Request $request){
+
+		
+	    //if our chosen id and products table prod_cat_id col match the get first 100 data 
+
+        //$request->id here is the id of our chosen option id
+        $data=course::select('course_id','course_name')->where('department_id',$request->id)->take(100)->get();
+        return response()->json($data);//then sent this data to ajax success
+	}
+
 
     public function __construct()
     {
@@ -52,11 +71,12 @@ class course_detailController extends Controller
      */
     public function create()
     {
+        $prod=department::all();//get data from table
         $department = department::latest()->paginate(100);
         $courses = course::latest()->paginate(100);
         $subcategory = subcategory::latest()->paginate(100);
         $subgroup = subgroup::latest()->paginate(100);
-        return view('admin.course_detail.create', compact('department','courses','subcategory','subgroup'));
+        return view('admin.course_detail.create', compact('prod','department','courses','subcategory','subgroup'));
     }
 
     /**
