@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/prodview','Admin\\course_detailController@create');
+Route::get('/findProductName','Admin\\course_detailController@findProductName');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/report', 'Admin\\ReportController1@index')->name('report');
 Route::get('/reportapprove', 'Admin\\ReportController1@reportapprove')->name('reportapprove');
