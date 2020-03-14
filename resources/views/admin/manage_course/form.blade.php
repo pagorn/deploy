@@ -152,6 +152,13 @@ function ha2 (e,id){
    var index = e.target.selectedIndex;
    document.getElementById(id).selectedIndex = index;
 
+
+}
+
+function ha3 (e,id){
+   var index = e.target.selectedIndex;
+   document.getElementById(id).selectedIndex = index;
+
 };
 
     </script>
