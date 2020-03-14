@@ -130,6 +130,11 @@
    document.getElementById("group1").addEventListener('change',function(e) {ha1(e,'group2');}, false);
    document.getElementById("group2").addEventListener('change',function(e) {ha1(e,'group1');}, false);
    
+      
+   document.getElementById("department_id").addEventListener('change',function(e) {ha1(e,'department_name');}, false);
+   document.getElementById("department_name").addEventListener('change',function(e) {ha1(e,'department_id');}, false);
+   
+   
    
 };
 function ha (e,id){
